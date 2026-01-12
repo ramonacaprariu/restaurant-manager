@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 User Directory
+
+    form(method="GET" action="/users")
+        input(type="text" name="name" placeholder="Provide name to search user directory..." value=search)
+        button(type="submit") Search
+
+    if users.length === 0
+        p No users found.
+    else
+        ul
+            each u in users
+                li
+                    a(href=`/users/${u._id}`)= u.username

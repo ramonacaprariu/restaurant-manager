@@ -1,0 +1,64 @@
+extends layout
+
+block content
+    h2 Name:
+    input(type="text", value=restaurant.name, id="restoname")
+    h2 Delivery Fee:
+    input(type="numeric", value=restaurant.delivery_fee, id="restofee")
+    h2 Minimum Order:
+    input(type="numeric", value=restaurant.min_order, id="restomin")
+    //-key is menu category, val is all the items within
+    div(id="entiremenu")
+        each valMenu, keyMenu in restaurant.menu
+            h3= keyMenu
+            ul
+                //-key is item number, val is item's attributes
+                each valItem, keyItem in valMenu
+                    b #{keyItem}
+                    li
+                        span #{valItem.name} - $#{valItem.price} 
+                        br
+                        i #{valItem.description}
+    h2(style="text-decoration: underline") Adding to the Restaurant
+    label Category:
+    select(name="menucategory", id="categorydropdown")
+        option(value="", disabled selected) Select a category
+        each items, categoryName in restaurant.menu
+            option(value=categoryName) #{categoryName}
+    div(id="menuitems")
+    p Add a new category to the restaurant:
+        input(type="text", id="newcategory")
+        button(type="button", id="addcategory") Add Category
+    p Add a new menu item to the restaurant:
+    table
+        tr
+            th Name:
+            td
+                input(type="text", id="newname")
+        tr
+            th Description:
+            td
+                input(type="text", id="newdescription")
+        tr
+            th Price:
+            td
+                input(type="numeric", id="newprice")
+        tr
+            th Category:
+            td
+                select(id="newitemcat")
+                    option(value="", disabled selected) Choose a category
+                    each items, categoryName in restaurant.menu
+                        option(value=categoryName) #{categoryName}
+        tr
+            th
+            td
+                button(type="button", id="additem") Add item
+    br
+    button(type="button", id="save", style="display: block; margin: 0 auto;") Save Changes
+    //-as opposed to #{} so we don't escape, and so changerestaurant.js has access to data
+    script.
+        window.restaurantData = !{JSON.stringify(restaurant)};
+    //- script(type="application/json" id="restaurant-json").
+    //-     !{JSON.stringify(restaurant)}
+    script(src="/changerestaurant.js")

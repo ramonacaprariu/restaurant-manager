@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1 Welcome to the Restaurant App
+    p This is the home page.
+    if loggedIn
+        p You are logged in as #{username}.
+        a(href="/logout") Logout
+    else
+        a(href="/login") Login
+        |  or 
+        a(href="/register") Register

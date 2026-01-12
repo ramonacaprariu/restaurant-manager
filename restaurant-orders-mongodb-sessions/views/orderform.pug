@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        title Restaurant App
+        link(rel='stylesheet', href='/orderform.css')
+    body
+        nav
+            if loggedIn
+                span Logged in as #{username} 
+                a(href="/logout") Logout
+                br 
+                //- need to use template literal
+                a(href=`/users/${userId}`) Profile
+                br
+                a(href="/orders/orderform") Order Form
+                br
+                a(href="/users") User Directory
+            else
+                a(href="/login") Login
+                br
+                a(href="/register") Register
+            br
+            a(href="/") Home
+
+        h1 Order Form
+
+        select#restaurant-select
+        br
+        br
+        #info
+        #main
+            .column.left#left
+            .column.middle#middle
+            .column.right#right
+
+        script(src="/orderform.js")
+

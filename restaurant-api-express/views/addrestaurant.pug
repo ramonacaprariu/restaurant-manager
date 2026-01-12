@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h1 Enter the restaurant information:
+    h2 Name:
+    input(type="text", id="name") 
+    h2 Delivery Fee:
+    input(type="number", id="deliveryfee", min="0")
+    h2 Minimum Order:
+    input(type="number", id="minimumorder", min="0")
+    br
+    br
+    button(type="button", id="submit") Submit
+    script(src="/addrestaurant.js")

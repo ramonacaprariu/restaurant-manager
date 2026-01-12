@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 Order Summary 
+
+    h3 Details
+    p Username: #{user.username}
+    p Restaurant Name: #{order.restaurantName}
+    ul
+        each item, id in items 
+            li
+                p #{item.name} x #{item.quantity}
+    p Subtotal: $#{order.subtotal.toFixed(2)}
+    p Tax: $#{order.tax.toFixed(2)}
+    p Delivery Fee: $#{order.fee.toFixed(2)}
+    p Order Total: $#{order.total.toFixed(2)}

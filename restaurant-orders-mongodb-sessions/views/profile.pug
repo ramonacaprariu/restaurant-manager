@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    h1 User Profile
+
+    h2 #{profileUser.username}
+
+    //if user is viewing own profile, show privacy option
+    if isOwner
+        form(method="POST" action=`/users/${profileUser._id}/privacy`)
+            label
+                | Profile Privacy:
+                select(name="privacy")
+                    //- if profileUser.privacy is false, then !profileUser.privacy is true, and Public value displayed
+                    option(value="false" selected=!profileUser.privacy) Public
+                    option(value="true" selected=profileUser.privacy) Private
+            button(type="submit") Save
+    else
+        //- in the case privacy is true - so its private
+        if profileUser.privacy 
+            p This profile is private.
+
+
+    //order history
+    h3 Order History
+
+    if orders.length === 0
+        p No orders placed yet.
+    else
+        ul
+            each order in orders
+                li
+                    a(href=`/orders/${order._id}`) Order #{order._id}
+

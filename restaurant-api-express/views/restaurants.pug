@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    each restaurant in restaurants
+        a(href="/restaurants/" + restaurant.id) #{restaurant.name}
+        //-a(href="/restaurants/#{restaurant.id}")= restaurant.name
+        br

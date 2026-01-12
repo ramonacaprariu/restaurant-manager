@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        title Restaurant App
+    body
+        //- navigation header based on loggedIn property
+        nav
+            if loggedIn
+                span Logged in as #{username} 
+                a(href="/logout") Logout
+                br 
+                //- need to use template literal
+                a(href=`/users/${userId}`) Profile
+                br
+                a(href="/orders/orderform") Order Form
+                br
+                a(href="/users") User Directory
+            else
+                a(href="/login") Login
+                br
+                a(href="/register") Register
+            br
+            a(href="/") Home
+
+        block content
